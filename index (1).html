@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Evolución en Animales Peruanos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --verde:#2d5a27;--verde-claro:#4a8c41;--verde-brillo:#7ec66b;
+  --dorado:#b8860b;--dorado-claro:#d4a017;--dorado-brillo:#f0c040;
+  --crema:#e8dcc8;--humo:#c9bfad;
+  --negro:#0a0c08;--carbon:#111408;--oscuro:#1a1f14;--medio:#1e2418
+}
+html{scroll-behavior:smooth}
+body{background:var(--negro);color:var(--crema);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(10,12,8,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(184,134,11,0.12)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0.15em;color:var(--dorado-claro);text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--humo);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--dorado-brillo)}
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--humo);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;padding:0}
+.nav-dropdown-btn:hover{color:var(--dorado-brillo)}
+.dropdown-menu{display:none;position:absolute;top:100%;left:0;background:var(--carbon);border:1px solid rgba(184,134,11,0.15);min-width:200px;padding:0.5rem 0;margin-top:0.5rem}
+.nav-dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:0.5rem 1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--humo);text-decoration:none;transition:all 0.2s}
+.dropdown-menu a:hover{color:var(--dorado-brillo);background:rgba(184,134,11,0.08)}
+
+/* ── HERO (compacto) ── */
+.hero{min-height:75vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:8rem 2rem 5rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(45,90,39,0.2) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(184,134,11,0.1) 0%,transparent 50%),linear-gradient(160deg,var(--negro) 0%,var(--carbon) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(45,90,39,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(45,90,39,0.04) 1px,transparent 1px);background-size:60px 60px}
+.hero-eyebrow{position:relative;font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--dorado-claro);margin-bottom:1.2rem;opacity:0.75}
+.hero-title{position:relative;font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;color:var(--crema);margin-bottom:0.4rem}
+.hero-title em{color:var(--verde-brillo);font-style:italic}
+.hero-subtitle{position:relative;font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2vw,1.35rem);color:var(--dorado-claro);font-style:italic;margin-bottom:1.8rem;opacity:0.85}
+.hero-desc{position:relative;max-width:480px;font-size:0.88rem;line-height:1.85;color:var(--humo);margin-bottom:2.2rem}
+.hero-cta{position:relative;display:inline-block;padding:0.7rem 2.2rem;border:1px solid var(--dorado);color:var(--dorado-brillo);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;background:transparent;transition:all 0.3s;text-decoration:none}
+.hero-cta:hover{background:rgba(184,134,11,0.12);border-color:var(--dorado-brillo)}
+
+/* ── SECCIONES COMUNES ── */
+.section-tag{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--dorado-claro);margin-bottom:0.8rem;opacity:0.7}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,3rem);line-height:1.1;color:var(--crema);margin-bottom:1.8rem}
+.section-title em{color:var(--verde-brillo);font-style:italic}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(184,134,11,0.25),transparent);margin:0}
+
+/* ── SECCIÓN: INTRODUCCIÓN A LA EVOLUCIÓN ── */
+#evolucion{background:var(--carbon);padding:6rem 3rem}
+.evolucion-inner{max-width:1100px;margin:0 auto}
+.evolucion-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:1rem}
+.intro-body{font-size:0.92rem;line-height:1.95;color:var(--humo)}
+.intro-body p+p{margin-top:1.1rem}
+.intro-body strong{color:var(--crema);font-weight:500}
+.concept-cards{display:flex;flex-direction:column;gap:0.9rem}
+.concept-card{border-left:2px solid var(--verde);padding:1rem 1.2rem;background:rgba(45,90,39,0.07)}
+.concept-card h4{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--verde-brillo);margin-bottom:0.4rem}
+.concept-card p{font-size:0.82rem;line-height:1.65;color:var(--humo)}
+.darwin-quote{margin-top:2rem;padding:1.5rem;border:1px solid rgba(184,134,11,0.18);background:rgba(184,134,11,0.04)}
+.darwin-quote blockquote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dorado-claro);line-height:1.6;margin-bottom:0.6rem}
+.darwin-quote cite{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--humo);opacity:0.6}
+
+/* ── SECCIÓN: ANIMALES (índice) ── */
+#animales-indice{background:var(--oscuro);padding:5rem 3rem}
+.indice-inner{max-width:1100px;margin:0 auto}
+.region-pills{display:flex;gap:0.8rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.pill{padding:0.35rem 1.1rem;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:all 0.3s;background:transparent}
+.pill-sierra{border-color:rgba(184,134,11,0.35);color:var(--dorado-claro)}
+.pill-sierra.active,.pill-sierra:hover{background:rgba(184,134,11,0.12);border-color:var(--dorado)}
+.pill-selva{border-color:rgba(45,90,39,0.45);color:var(--verde-brillo)}
+.pill-selva.active,.pill-selva:hover{background:rgba(45,90,39,0.18);border-color:var(--verde-claro)}
+.pill-costa{border-color:rgba(55,138,221,0.35);color:#7bb8f0}
+.pill-costa.active,.pill-costa:hover{background:rgba(55,138,221,0.1);border-color:#378add}
+.pill-all{border-color:rgba(201,191,173,0.25);color:var(--humo)}
+.pill-all.active,.pill-all:hover{background:rgba(201,191,173,0.07);border-color:var(--crema)}
+.animales-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.animal-card{background:var(--medio);border:1px solid rgba(201,191,173,0.08);cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;text-decoration:none;display:block}
+.animal-card:hover{border-color:rgba(184,134,11,0.35);transform:translateY(-3px)}
+.animal-card.hidden{display:none}
+.ac-header{padding:1.3rem 1.3rem 0.8rem}
+.ac-badge{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid;display:inline-block;margin-bottom:0.7rem}
+.badge-sierra{color:var(--dorado-claro);border-color:rgba(184,134,11,0.35)}
+.badge-selva{color:var(--verde-brillo);border-color:rgba(45,90,39,0.45)}
+.badge-costa{color:#7bb8f0;border-color:rgba(55,138,221,0.35)}
+.ac-emoji{font-size:2.2rem;display:block;margin-bottom:0.5rem}
+.ac-nombre{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--crema);margin-bottom:0.15rem}
+.ac-sci{font-size:0.7rem;font-style:italic;color:var(--humo);opacity:0.55}
+.ac-body{padding:0 1.3rem 0.8rem}
+.ac-desc{font-size:0.8rem;line-height:1.65;color:var(--humo)}
+.ac-footer{padding:0.7rem 1.3rem;border-top:1px solid rgba(201,191,173,0.07);display:flex;justify-content:space-between;align-items:center}
+.ac-link{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dorado-claro);opacity:0.7}
+.ac-arrow{color:var(--dorado-claro);transition:transform 0.3s}
+.animal-card:hover .ac-arrow{transform:translateX(4px)}
+
+/* ── SECCIONES INDIVIDUALES POR ANIMAL ── */
+.animal-section{padding:6rem 3rem;position:relative;overflow:hidden}
+.animal-section:nth-child(odd){background:var(--carbon)}
+.animal-section:nth-child(even){background:var(--oscuro)}
+.animal-section-inner{max-width:1100px;margin:0 auto}
+.animal-hero-row{display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(201,191,173,0.1)}
+.animal-big-emoji{font-size:5rem;line-height:1}
+.animal-intro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--crema);margin-bottom:0.2rem}
+.animal-intro .sci{font-size:0.85rem;font-style:italic;color:var(--humo);opacity:0.55;margin-bottom:0.8rem}
+.animal-intro .region-tag{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.25rem 0.65rem;border:1px solid;display:inline-block}
+.animal-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.animal-body{font-size:0.9rem;line-height:1.9;color:var(--humo)}
+.animal-body p+p{margin-top:1rem}
+.animal-body strong{color:var(--crema);font-weight:500}
+.evo-panel{background:rgba(45,90,39,0.07);border:1px solid rgba(45,90,39,0.2);padding:1.5rem}
+.evo-panel-title{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--verde-brillo);margin-bottom:1.2rem;opacity:0.8}
+.evo-timeline{display:flex;flex-direction:column;gap:1rem}
+.evo-step{display:flex;gap:0.9rem;align-items:flex-start}
+.evo-line{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0}
+.evo-dot{width:7px;height:7px;border-radius:50%;background:var(--verde-claro);margin-top:4px}
+.evo-connector{width:1px;flex:1;min-height:20px;background:rgba(45,90,39,0.3);margin-top:3px}
+.evo-step:last-child .evo-connector{display:none}
+.evo-time{font-size:0.65rem;color:var(--dorado-claro);opacity:0.75;margin-bottom:0.2rem;letter-spacing:0.04em}
+.evo-text{font-size:0.82rem;line-height:1.6;color:var(--humo)}
+.adaptaciones{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(201,191,173,0.08)}
+.adaptaciones-title{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dorado-claro);margin-bottom:1rem;opacity:0.75}
+.adapt-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem}
+.adapt-item{background:rgba(184,134,11,0.05);border-left:2px solid rgba(184,134,11,0.3);padding:0.7rem 0.9rem}
+.adapt-item span{font-size:0.78rem;color:var(--humo);line-height:1.5}
+.wip-notice{margin-top:2rem;padding:1rem 1.2rem;border:1px dashed rgba(201,191,173,0.15);background:rgba(201,191,173,0.03)}
+.wip-notice p{font-size:0.78rem;color:var(--humo);opacity:0.5;font-style:italic}
+
+/* ── SECCIÓN: CONCIENTIZACIÓN ── */
+#conciencia{background:var(--negro);padding:7rem 3rem;position:relative;overflow:hidden}
+#conciencia::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(45,90,39,0.12),transparent 60%)}
+.conciencia-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:3rem 0}
+.stat-box{padding:1.8rem 1rem;border:1px solid rgba(201,191,173,0.09)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--dorado-brillo);line-height:1}
+.stat-label{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--humo);margin-top:0.5rem;opacity:0.65;line-height:1.5}
+.conciencia-body{font-size:0.9rem;line-height:1.9;color:var(--humo);max-width:650px;margin:0 auto}
+.conciencia-body p+p{margin-top:1rem}
+.amenaza-list{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:2rem auto;max-width:680px;text-align:left}
+.amenaza-item{display:flex;gap:0.7rem;align-items:flex-start;padding:0.8rem 1rem;border:1px solid rgba(201,191,173,0.08);background:rgba(201,191,173,0.02)}
+.amenaza-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.amenaza-text{font-size:0.8rem;color:var(--humo);line-height:1.5}
+.amenaza-text strong{color:var(--crema);font-weight:500;display:block;margin-bottom:0.2rem}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem 3rem;background:var(--negro);border-top:1px solid rgba(184,134,11,0.1);display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--dorado-claro);letter-spacing:0.08em}
+.footer-meta{font-size:0.68rem;color:var(--humo);opacity:0.4;text-align:right;line-height:1.7}
+
+/* ── BACK TO TOP ── */
+.back-btn{display:inline-block;margin-top:3rem;padding:0.6rem 1.8rem;border:1px solid rgba(184,134,11,0.3);color:var(--dorado-claro);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.back-btn:hover{background:rgba(184,134,11,0.1)}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #evolucion,#animales-indice,.animal-section,#conciencia{padding:4rem 1.5rem}
+  .evolucion-grid,.animal-content-grid{grid-template-columns:1fr;gap:2.5rem}
+  .animal-hero-row{grid-template-columns:1fr}
+  .stat-row,.amenaza-list{grid-template-columns:1fr}
+  .adapt-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .footer-meta{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Fauna Evolutiva · Perú</div>
+  <div class="nav-links">
+    <a href="#evolucion">La Evolución</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn">Los Animales ▾</button>
+      <div class="dropdown-menu">
+        <a href="#condor">🦅 Cóndor Andino</a>
+        <a href="#delfin">🐬 Delfín Rosado</a>
+        <a href="#oso">🐻 Oso de Anteojos</a>
+        <a href="#pez">⚡ Pez Eléctrico</a>
+        <a href="#vicuna">🦙 Vicuña</a>
+        <a href="#anaconda">🐍 Anaconda</a>
+        <a href="#manati">🐄 Manatí Amazónico</a>
+        <a href="#jaguar">🐆 Jaguar</a>
+        <a href="#leon">🦭 León Marino</a>
+        <a href="#caiman">🐊 Caimán Negro</a>
+      </div>
+    </div>
+    <a href="#conciencia">Biodiversidad</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <p class="hero-eyebrow">Proyecto Personal IB · Ignacio Arias · 2026</p>
+  <h1 class="hero-title">La <em>Evolución</em> en<br>Animales Peruanos</h1>
+  <p class="hero-subtitle">Millones de años escritos en cada especie</p>
+  <p class="hero-desc">Desde las cumbres de los Andes hasta las profundidades del Amazonas, diez especies que cuentan la historia de la vida en el Perú.</p>
+  <a class="hero-cta" href="#evolucion">Explorar</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECCIÓN 1: INTRODUCCIÓN A LA EVOLUCIÓN -->
+<section id="evolucion">
+  <div class="evolucion-inner">
+    <p class="section-tag">Sección 1 · Fundamentos</p>
+    <h2 class="section-title">La Teoría de la <em>Evolución</em></h2>
+    <div class="evolucion-grid">
+      <div>
+        <div class="intro-body">
+          <p>La teoría de la evolución, formulada por <strong>Charles Darwin</strong> en 1859, es el principio unificador de toda la biología moderna. Sostiene que las especies no son fijas ni inmutables, sino que cambian a lo largo del tiempo mediante un proceso gradual impulsado por la <strong>selección natural</strong>.</p>
+          <p>La selección natural opera sobre la variación genética presente en las poblaciones: los individuos con características que les permiten sobrevivir y reproducirse con mayor éxito en su entorno transmiten esas ventajas a su descendencia. Con el paso de millones de generaciones, estos cambios se acumulan y dan origen a nuevas especies.</p>
+          <p>El <strong>Perú</strong>, con sus tres grandes regiones naturales —costa, sierra y selva— y su extraordinaria variedad de ecosistemas, ha sido un laboratorio evolutivo sin igual. La radical diferencia de climas, altitudes y presiones selectivas ha dado lugar a adaptaciones únicas e historias evolutivas fascinantes que exploraremos en este sitio.</p>
+        </div>
+        <div class="darwin-quote">
+          <blockquote>"No es la especie más fuerte la que sobrevive, ni la más inteligente, sino la que responde mejor al cambio."</blockquote>
+          <cite>— Charles Darwin, El origen de las especies (1859)</cite>
+        </div>
+      </div>
+      <div>
+        <div class="concept-cards">
+          <div class="concept-card">
+            <h4>Selección Natural</h4>
+            <p>Los individuos mejor adaptados a su entorno sobreviven y se reproducen más, transmitiendo sus características ventajosas a la siguiente generación. Es el motor principal del cambio evolutivo.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Especiación</h4>
+            <p>Proceso por el cual una población se divide en dos o más especies distintas, generalmente por aislamiento geográfico o presiones ambientales diferentes a lo largo del tiempo.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Adaptación</h4>
+            <p>Característica heredable que aumenta la aptitud de un organismo en su entorno específico. Es el resultado visible de la selección natural acumulada durante generaciones.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Filogenia</h4>
+            <p>Estudio de las relaciones evolutivas entre organismos, representadas mediante árboles filogenéticos que muestran el origen ancestral común de las especies.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Deriva Genética</h4>
+            <p>Cambios aleatorios en la frecuencia de alelos dentro de una población, especialmente relevante en poblaciones pequeñas. Opera junto a la selección natural en la evolución.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ÍNDICE DE ANIMALES -->
+<section id="animales-indice">
+  <div class="indice-inner">
+    <p class="section-tag">Sección 2 · Las Especies</p>
+    <h2 class="section-title">Diez <em>testigos</em> de la evolución</h2>
+    <div class="region-pills">
+      <div class="pill pill-all active" onclick="filtrar('all',this)">Todas</div>
+      <div class="pill pill-sierra" onclick="filtrar('sierra',this)">Sierra</div>
+      <div class="pill pill-selva" onclick="filtrar('selva',this)">Selva</div>
+      <div class="pill pill-costa" onclick="filtrar('costa',this)">Costa</div>
+    </div>
+    <div class="animales-grid" id="gridAnimales"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECCIONES INDIVIDUALES POR ANIMAL
+     ═══════════════════════════════════════════ -->
+
+<!-- 1. CÓNDOR ANDINO -->
+<section class="animal-section" id="condor">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🦅</div>
+      <div class="animal-intro">
+        <p class="section-tag">Sierra · Ave</p>
+        <h2>Cóndor Andino</h2>
+        <p class="sci">Vultur gryphus</p>
+        <span class="region-tag badge-sierra">Sierra</span>
+      </div>
+    </div>
+    <div class="animal-content-grid">
+      <div class="animal-body">
+        <p>El cóndor andino es el ave no passeriforme de mayor envergadura del mundo, con hasta <strong>3,3 metros de ala a ala</strong> y un peso que puede superar los 15 kg. Como ave carroñera, cumple un rol ecológico fundamental en los ecosistemas andinos: sanea el ambiente al consumir cadáveres y evitar la propagación de enfermedades.</p>
+        <p>Es símbolo nacional del Perú y figura en el escudo de armas. Habita desde el nivel del mar hasta los 5.500 metros de altitud, aprovechando las corrientes de aire ascendentes de los Andes para planear durante horas sin gastar energía.</p>
+        <p>Su estrategia vital es la llamada <strong>K-selección</strong>: vive hasta 70 años, alcanza la madurez sexual a los 5-6 años y solo pone un huevo cada dos años. Esta reproducción lenta es una adaptación evolutiva a entornos estables donde la mortalidad adulta es baja.</p>
+        <div class="wip-notice"><p>📝 Sección en desarrollo — se añadirá información sobre taxonomía, distribución y estado de conservación.</p></div>
+      </div>
+      <div>
+        <div class="evo-panel">
+          <p class="evo-panel-title">Recorrido Evolutivo</p>
+          <div class="evo-timeline">
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~25 millones de años</p><p class="evo-text">Los ancestros de los cóndores divergen del linaje de los buitres del Nuevo Mundo en América del Norte.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~5 millones de años</p><p class="evo-text">La subfamilia Cathartinae se diversifica; aparecen formas gigantes como Argentavis magnificens, el ave voladora más grande conocida.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~2 millones de años</p><p class="evo-text">El género Vultur aparece en el registro fósil. Las glaciaciones andinas modelan las poblaciones hacia las alturas.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div></div>
+              <div><p class="evo-time">Actualidad</p><p class="evo-text">Perfectamente adaptado a la termoclima andina, usa corrientes de aire ascendentes para planear sin apenas gastar energía muscular.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="adaptaciones">
+          <p class="adaptaciones-title">Adaptaciones Clave</p>
+          <div class="adapt-grid">
+            <div class="adapt-item"><span><strong>Cabeza pelada</strong> — evita la acumulación de carroña al comer, adaptación higiénica única.</span></div>
+            <div class="adapt-item"><span><strong>pH gástrico extremo</strong> — digiere patógenos (carbunco, botulismo) que matarían a otros animales.</span></div>
+            <div class="adapt-item"><span><strong>Envergadura máxima</strong> — optimizada para el planeo en corrientes térmicas andinas.</span></div>
+            <div class="adapt-item"><span><strong>K-selección</strong> — longevidad extrema y reproducción lenta como estrategia vital estable.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 2. DELFÍN ROSADO -->
+<section class="animal-section" id="delfin">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐬</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Mamífero acuático</p>
+        <h2>Delfín Rosado del Amazonas</h2>
+        <p class="sci">Inia geoffrensis</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="animal-content-grid">
+      <div class="animal-body">
+        <p>El boto o delfín rosado es el <strong>cetáceo de agua dulce más grande del mundo</strong>, con hasta 2,5 metros y 185 kg. Su coloración rosada adulta —inusual entre mamíferos— no es pigmentación activa sino la visibilidad de vasos sanguíneos a través de una piel translúcida, posiblemente una adaptación termorreguladora.</p>
+        <p>Posee un <strong>cuello articulado único entre los cetáceos</strong>, que le permite girar la cabeza 180°. Esta capacidad —que otros delfines perdieron al fusionar sus vértebras cervicales— es esencial para maniobrar entre raíces sumergidas en la selva inundada durante la época de lluvias.</p>
+        <p>Su cerebro es un <strong>40% más grande</strong> que el del delfín oceánico en proporción al cuerpo, con mayor complejidad en las áreas asociadas al procesamiento sensorial, reflejo de la necesidad de navegar en aguas turbias mediante ecolocalización avanzada.</p>
+        <div class="wip-notice"><p>📝 Sección en desarrollo — se añadirá información sobre comportamiento, distribución y conservación.</p></div>
+      </div>
+      <div>
+        <div class="evo-panel">
+          <p class="evo-panel-title">Recorrido Evolutivo</p>
+          <div class="evo-timeline">
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~50 millones de años</p><p class="evo-text">Los ancestros terrestres de los cetáceos (Pakicetus) comienzan su transición al medio acuático desde mamíferos ungulados del Eoceno.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~25 millones de años</p><p class="evo-text">Los delfines de río divergen de los oceánicos al quedar aislados en cuencas fluviales durante cambios geológicos del Oligoceno.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div><div class="evo-connector"></div></div>
+              <div><p class="evo-time">Hace ~5–15 millones de años</p><p class="evo-text">El mar amazónico del Mioceno aísla poblaciones; al retroceder las aguas, el linaje Inia queda confinado en la cuenca fluvial.</p></div>
+            </div>
+            <div class="evo-step">
+              <div class="evo-line"><div class="evo-dot"></div></div>
+              <div><p class="evo-time">Actualidad</p><p class="evo-text">Conserva vértebras cervicales no fusionadas —un rasgo primitivo— convertido en ventaja adaptativa para la selva inundada.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="adaptaciones">
+          <p class="adaptaciones-title">Adaptaciones Clave</p>
+          <div class="adapt-grid">
+            <div class="adapt-item"><span><strong>Cuello flexible</strong> — único entre cetáceos; permite maniobrar en vegetación inundada.</span></div>
+            <div class="adapt-item"><span><strong>Coloración rosada</strong> — posible adaptación termorreguladora en aguas cálidas amazónicas.</span></div>
+            <div class="adapt-item"><span><strong>Ecolocalización amplia</strong> — adaptada a visibilidad cero en aguas turbias del Amazonas.</span></div>
+            <div class="adapt-item"><span><strong>Cerebro hiperdesarrollado</strong> — 40% más grande que delfines oceánicos para navegación compleja.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 3 al 10: ESTRUCTURA LISTA (por desarrollar) -->
+<section class="animal-section" id="oso">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐻</div>
+      <div class="animal-intro">
+        <p class="section-tag">Sierra · Mamífero</p>
+        <h2>Oso de Anteojos</h2>
+        <p class="sci">Tremarctos ornatus</p>
+        <span class="region-tag badge-sierra">Sierra</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo. Esta sección se completará próximamente con información sobre características, evolución y adaptaciones.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="pez">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">⚡</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Pez</p>
+        <h2>Pez Eléctrico Amazónico</h2>
+        <p class="sci">Electrophorus electricus</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="vicuna">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🦙</div>
+      <div class="animal-intro">
+        <p class="section-tag">Sierra · Mamífero</p>
+        <h2>Vicuña</h2>
+        <p class="sci">Vicugna vicugna</p>
+        <span class="region-tag badge-sierra">Sierra</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="anaconda">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐍</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Reptil</p>
+        <h2>Anaconda Verde</h2>
+        <p class="sci">Eunectes murinus</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="manati">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐄</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Mamífero acuático</p>
+        <h2>Manatí Amazónico</h2>
+        <p class="sci">Trichechus inunguis</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="jaguar">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐆</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Mamífero</p>
+        <h2>Jaguar</h2>
+        <p class="sci">Panthera onca</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="leon">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🦭</div>
+      <div class="animal-intro">
+        <p class="section-tag">Costa · Mamífero marino</p>
+        <h2>León Marino Sudamericano</h2>
+        <p class="sci">Otaria flavescens</p>
+        <span class="region-tag badge-costa">Costa</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="animal-section" id="caiman">
+  <div class="animal-section-inner">
+    <div class="animal-hero-row">
+      <div class="animal-big-emoji">🐊</div>
+      <div class="animal-intro">
+        <p class="section-tag">Selva · Reptil</p>
+        <h2>Caimán Negro</h2>
+        <p class="sci">Melanosuchus niger</p>
+        <span class="region-tag badge-selva">Selva</span>
+      </div>
+    </div>
+    <div class="wip-notice"><p>📝 Contenido en desarrollo.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECCIÓN: CONCIENTIZACIÓN -->
+<section id="conciencia">
+  <div class="conciencia-inner">
+    <p class="section-tag">Sección 3 · Biodiversidad</p>
+    <h2 class="section-title">Un legado <em>en riesgo</em></h2>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">84</div>
+        <div class="stat-label">de las 117 zonas de vida del mundo presentes en el Perú</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4to</div>
+        <div class="stat-label">país con mayor diversidad de mamíferos en el mundo</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">1er</div>
+        <div class="stat-label">en diversidad de peces de agua dulce en el mundo</div>
+      </div>
+    </div>
+    <div class="conciencia-body">
+      <p>Cada una de las diez especies presentadas en este sitio es el producto de millones de años de evolución. Son el resultado de presiones selectivas, cambios geológicos, extinciones masivas y adaptaciones extraordinarias que tardaron eones en forjarse.</p>
+      <p>Sin embargo, la mayoría enfrenta amenazas graves que operan en escalas de tiempo incomparablemente más rápidas que la evolución misma. Proteger la biodiversidad peruana no es solo una responsabilidad ecológica: es preservar el registro vivo de la historia de la vida en la Tierra.</p>
+    </div>
+    <div class="amenaza-list">
+      <div class="amenaza-item">
+        <span class="amenaza-icon">🌳</span>
+        <div class="amenaza-text"><strong>Deforestación</strong>El Perú pierde cientos de miles de hectáreas de bosque amazónico cada año, destruyendo hábitats que tardaron millones de años en formarse.</div>
+      </div>
+      <div class="amenaza-item">
+        <span class="amenaza-icon">🎯</span>
+        <div class="amenaza-text"><strong>Caza furtiva</strong>Especies como el caimán negro y el jaguar han sido cazadas casi hasta la extinción por su piel, sus partes y el tráfico ilegal.</div>
+      </div>
+      <div class="amenaza-item">
+        <span class="amenaza-icon">🌡️</span>
+        <div class="amenaza-text"><strong>Cambio climático</strong>El deshielo de glaciares andinos amenaza el hábitat de la vicuña y el oso de anteojos; el calentamiento amazónico afecta al delfín rosado y al manatí.</div>
+      </div>
+      <div class="amenaza-item">
+        <span class="amenaza-icon">🏭</span>
+        <div class="amenaza-text"><strong>Contaminación</strong>Mercurio de minería ilegal, plásticos y aguas residuales contaminan los ríos amazónicos, afectando directamente a especies acuáticas.</div>
+      </div>
+    </div>
+    <div class="conciencia-body">
+      <p>La extinción de una especie no es solo la pérdida de un animal: es la desaparición definitiva de un linaje evolutivo único, de millones de años de historia biológica que no pueden recuperarse.</p>
+    </div>
+    <a href="#inicio" class="back-btn">↑ Volver al inicio</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">La Evolución en Animales Peruanos</div>
+  <div class="footer-meta">Proyecto Personal IB · Ignacio Arias<br>Lima, Perú · 2026</div>
+</footer>
+
+<script>
+const animales = [
+  {id:"condor",emoji:"🦅",nombre:"Cóndor Andino",sci:"Vultur gryphus",region:"sierra",desc:"El ave no passeriforme de mayor envergadura del mundo. Símbolo nacional del Perú, planeur maestro de los Andes."},
+  {id:"delfin",emoji:"🐬",nombre:"Delfín Rosado",sci:"Inia geoffrensis",region:"selva",desc:"El cetáceo de agua dulce más grande del mundo. Su cuello articulado único entre cetáceos es una reliquia evolutiva reconvertida en ventaja."},
+  {id:"oso",emoji:"🐻",nombre:"Oso de Anteojos",sci:"Tremarctos ornatus",region:"sierra",desc:"El único oso nativo de Sudamérica y el único superviviente de la subfamilia Tremarctinae, relicto del Gran Intercambio Americano."},
+  {id:"pez",emoji:"⚡",nombre:"Pez Eléctrico",sci:"Electrophorus electricus",region:"selva",desc:"Genera hasta 860 voltios, la mayor descarga eléctrica de cualquier animal. Ejemplo icónico de evolución convergente."},
+  {id:"vicuna",emoji:"🦙",nombre:"Vicuña",sci:"Vicugna vicugna",region:"sierra",desc:"Camélido de la puna adaptado fisiológicamente a la hipoxia andina. Produce la fibra natural más fina del mundo."},
+  {id:"anaconda",emoji:"🐍",nombre:"Anaconda Verde",sci:"Eunectes murinus",region:"selva",desc:"La serpiente más pesada del mundo. Sus vestigios pélvicos son evidencia directa de su descendencia de reptiles cuadrúpedos."},
+  {id:"manati",emoji:"🐄",nombre:"Manatí Amazónico",sci:"Trichechus inunguis",region:"selva",desc:"El único sirénido exclusivo de agua dulce. Sus aletas conservan huesos análogos a los dedos humanos."},
+  {id:"jaguar",emoji:"🐆",nombre:"Jaguar",sci:"Panthera onca",region:"selva",desc:"El félido más grande de América. Su mandíbula evolucionó para perforar directamente el cráneo de sus presas."},
+  {id:"leon",emoji:"🦭",nombre:"León Marino Sudamericano",sci:"Otaria flavescens",region:"costa",desc:"El único otárido sudamericano. Sus aletas son extremidades modificadas con los mismos huesos de un miembro terrestre."},
+  {id:"caiman",emoji:"🐊",nombre:"Caimán Negro",sci:"Melanosuchus niger",region:"selva",desc:"El mayor depredador de la cuenca amazónica. Su plan corporal casi no ha cambiado en 80 millones de años: estasis evolutiva perfecta."}
+];
+
+const regionLabel={sierra:"Sierra",selva:"Selva",costa:"Costa"};
+
+function renderAnimales(filtro){
+  const grid=document.getElementById('gridAnimales');
+  grid.innerHTML='';
+  animales.forEach(a=>{
+    if(filtro!=='all'&&a.region!==filtro)return;
+    const card=document.createElement('a');
+    card.className='animal-card';
+    card.href='#'+a.id;
+    card.innerHTML=`
+      <div class="ac-header">
+        <div class="ac-badge badge-${a.region}">${regionLabel[a.region]}</div>
+        <span class="ac-emoji">${a.emoji}</span>
+        <div class="ac-nombre">${a.nombre}</div>
+        <div class="ac-sci">${a.sci}</div>
+      </div>
+      <div class="ac-body"><p class="ac-desc">${a.desc}</p></div>
+      <div class="ac-footer">
+        <span class="ac-link">Ver sección</span>
+        <span class="ac-arrow">→</span>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filtrar(region,btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderAnimales(region);
+}
+
+renderAnimales('all');
+</script>
+</body>
+</html>
